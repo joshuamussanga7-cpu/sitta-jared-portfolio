@@ -1,0 +1,26 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1f2937"/>
+  <rect x="20" y="20" width="360" height="260" fill="#374151" rx="10"/>
+  <text x="200" y="45" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Chat with Seller</text>
+
+  <!-- Chat bubbles -->
+  <rect x="40" y="70" width="150" height="25" fill="#6366f1" rx="12"/>
+  <text x="50" y="87" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="start">Hi, is this item available?</text>
+
+  <rect x="210" y="105" width="130" height="25" fill="#4b5563" rx="12"/>
+  <text x="220" y="122" font-family="Arial, sans-serif" font-size="11" fill="#e5e7eb" text-anchor="start">Yes, it's available!</text>
+
+  <rect x="40" y="140" width="180" height="25" fill="#6366f1" rx="12"/>
+  <text x="50" y="157" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="start">Great! Can we meet tomorrow?</text>
+
+  <rect x="190" y="175" width="150" height="25" fill="#4b5563" rx="12"/>
+  <text x="200" y="192" font-family="Arial, sans-serif" font-size="11" fill="#e5e7eb" text-anchor="start">Sure, 2 PM at the campus?</text>
+
+  <!-- Message input -->
+  <rect x="40" y="220" width="280" height="30" fill="#4b5563" rx="15"/>
+  <text x="50" y="240" font-family="Arial, sans-serif" font-size="12" fill="#9ca3af" text-anchor="start">Type a message...</text>
+  <circle cx="340" cy="235" r="12" fill="#6366f1"/>
+  <text x="340" y="242" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">→</text>
+
+  <text x="200" y="275" font-family="Arial, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">Real-Time Messaging • Firebase Powered</text>
+</svg>

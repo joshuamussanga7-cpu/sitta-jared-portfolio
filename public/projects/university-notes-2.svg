@@ -1,0 +1,32 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1f2937"/>
+  <rect x="20" y="20" width="360" height="260" fill="#374151" rx="10"/>
+  <text x="200" y="45" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Mathematics Notes</text>
+
+  <!-- Note items -->
+  <rect x="40" y="60" width="320" height="45" fill="#4b5563" rx="6"/>
+  <text x="60" y="78" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="start">Calculus Fundamentals</text>
+  <text x="60" y="95" font-family="Arial, sans-serif" font-size="12" fill="#9ca3af" text-anchor="start">Limits, derivatives, integrals</text>
+  <circle cx="340" cy="82" r="10" fill="#059669"/>
+  <text x="340" y="89" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">→</text>
+
+  <rect x="40" y="115" width="320" height="45" fill="#4b5563" rx="6"/>
+  <text x="60" y="133" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="start">Linear Algebra</text>
+  <text x="60" y="150" font-family="Arial, sans-serif" font-size="12" fill="#9ca3af" text-anchor="start">Matrices, vectors, transformations</text>
+  <circle cx="340" cy="137" r="10" fill="#059669"/>
+  <text x="340" y="144" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">→</text>
+
+  <rect x="40" y="170" width="320" height="45" fill="#4b5563" rx="6"/>
+  <text x="60" y="188" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="start">Statistics & Probability</text>
+  <text x="60" y="205" font-family="Arial, sans-serif" font-size="12" fill="#9ca3af" text-anchor="start">Data analysis, distributions</text>
+  <circle cx="340" cy="192" r="10" fill="#059669"/>
+  <text x="340" y="199" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">→</text>
+
+  <!-- Search bar -->
+  <rect x="40" y="230" width="280" height="35" fill="#4b5563" rx="17"/>
+  <text x="60" y="252" font-family="Arial, sans-serif" font-size="14" fill="#9ca3af" text-anchor="start">Search notes...</text>
+  <circle cx="320" cy="247" r="12" fill="#6b7280"/>
+  <text x="320" y="254" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">🔍</text>
+
+  <text x="200" y="275" font-family="Arial, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">Organized by Topic • Quick Access • Offline Available</text>
+</svg>
