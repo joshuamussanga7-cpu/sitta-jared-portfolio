@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/common/Navbar";
 import { Footer } from "@/components/common/Footer";
 
-const siteUrl = "https://portfolio.clastarhub.com";
+const siteUrl = "https://portifolio.clastarhub.com";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
