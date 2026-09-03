@@ -4,7 +4,7 @@ export interface Project {
   title: string
   description: string
   longDescription?: string
-  image: string
+  image?: string
   screenshots?: string[]
   technologies: string[]
   category: 'web' | 'mobile' | 'other'
@@ -32,7 +32,6 @@ export interface Project {
   featured?: boolean
 }
 
-// Blog Post types
 export interface BlogPost {
   id: string
   title: string
@@ -45,7 +44,6 @@ export interface BlogPost {
   image?: string
 }
 
-// Skill types
 export interface Skill {
   name: string
   level: 'beginner' | 'intermediate' | 'advanced' | 'expert'
@@ -53,7 +51,6 @@ export interface Skill {
   icon?: string
 }
 
-// Contact form types
 export interface ContactFormData {
   name: string
   email: string
@@ -61,14 +58,12 @@ export interface ContactFormData {
   message: string
 }
 
-// Social links
 export interface SocialLink {
   name: string
   url: string
   icon: string
 }
 
-// Experience type
 export interface Experience {
   id: string
   title: string
