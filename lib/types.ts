@@ -5,12 +5,13 @@ export interface Project {
   description: string
   longDescription?: string
   image: string
-  screenshots?: string[] // Multiple project images
+  screenshots?: string[]
   technologies: string[]
   category: 'web' | 'mobile' | 'other'
+  tags?: string[]
   status?: 'completed' | 'in-progress' | 'planned'
-  timeline?: string // e.g., "3 months"
-  role?: string // e.g., "Lead Developer"
+  timeline?: string
+  role?: string
   teamSize?: number
   challenges?: {
     title: string
@@ -18,14 +19,15 @@ export interface Project {
   }[]
   features?: string[]
   useCases?: string[]
+  results?: string[]
   statusNote?: string
-  monetization?: string[] // e.g., ["AdMob", "In-app Purchases"]
+  monetization?: string[]
   links: {
     github?: string
     live?: string
     demo?: string
-    apk?: string // For Android apps
-    sha256?: string // SHA256 hash for APK verification
+    apk?: string
+    sha256?: string
   }
   featured?: boolean
 }
