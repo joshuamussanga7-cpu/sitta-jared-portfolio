@@ -1,123 +1,123 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { projects } from '@/lib/data'
 import { Project } from '@/lib/types'
 
-/**
- * Projects Page
- */
 export default function ProjectsPage() {
-  const [categoryFilter, setCategoryFilter] = useState<string>('all')
-  const [statusFilter, setStatusFilter] = useState<string>('all')
+  const [filter, setFilter] = useState('all')
+  const [search, setSearch] = useState('')
 
-  const filteredProjects: Project[] = projects.filter((p) => {
-    const categoryMatch = categoryFilter === 'all' || p.category === categoryFilter
-    const statusMatch = statusFilter === 'all' || p.status === statusFilter
-    return categoryMatch && statusMatch
-  })
-
-  const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'web', label: 'Web Development' },
-    { id: 'mobile', label: 'Mobile Development' },
+  const filters = [
+    { id: 'all', label: 'All Work' },
+    { id: 'featured', label: 'Featured' },
+    { id: 'mobile', label: 'Mobile Apps' },
+    { id: 'web', label: 'Web Apps' },
+    { id: 'ai', label: 'AI / EdTech' },
+    { id: 'business', label: 'Business' },
+    { id: 'games', label: 'Games' },
   ]
 
-  const statuses = [
-    { id: 'all', label: 'All Status' },
-    { id: 'completed', label: 'Completed' },
-    { id: 'in-progress', label: 'In Progress' },
-    { id: 'planned', label: 'Planned' },
-  ]
+  const filteredProjects = useMemo(() => {
+    const query = search.trim().toLowerCase()
+
+    return projects.filter((project: Project) => {
+      const matchesFilter =
+        filter === 'all' ||
+        (filter === 'featured' && project.featured) ||
+        (filter === project.category) ||
+        (filter === 'ai' && project.tags?.includes('AI')) ||
+        (filter === 'business' && project.tags?.includes('Business')) ||
+        (filter === 'games' && project.tags?.includes('Game Development'))
+
+      const searchable = [
+        project.title,
+        project.description,
+        project.category,
+        ...(project.tags ?? []),
+        ...(project.technologies ?? []),
+      ].join(' ').toLowerCase()
+
+      return matchesFilter && (!query || searchable.includes(query))
+    })
+  }, [filter, search])
 
   return (
     <div className="w-full">
-      {/* Header */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl sm:text-6xl font-bold mb-6 gradient-text">My Projects</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl">
-            A showcase of my recent web and mobile development projects. Each project includes
-            detailed information, screenshots, and direct links to GitHub repositories and live demos.
-          </p>
-        </div>
-      </section>
-
-      {/* Filters and Projects */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            {/* Category Filters */}
-            <div className="flex flex-wrap gap-3">
-              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 self-center mr-2">
-                Category:
-              </span>
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setCategoryFilter(category.id)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                    categoryFilter === category.id
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                      : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Status Filters */}
-            <div className="flex flex-wrap gap-3">
-              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 self-center mr-2">
-                Status:
-              </span>
-              {statuses.map((status) => (
-                <button
-                  key={status.id}
-                  onClick={() => setStatusFilter(status.id)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                    statusFilter === status.id
-                      ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-lg'
-                      : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {status.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Results Count */}
-          <div className="mb-8">
-            <p className="text-gray-600 dark:text-gray-400">
-              Showing {filteredProjects.length} of {projects.length} projects
+      <section className="relative overflow-hidden py-24 sm:py-28 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-950 dark:to-blue-950/30">
+        <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-purple-500/10 blur-3xl" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-4">
+              Selected Work
+            </p>
+            <h1 className="text-5xl sm:text-6xl font-black tracking-tight text-gray-950 dark:text-white mb-6">
+              Projects that solve real problems.
+            </h1>
+            <p className="text-lg sm:text-xl leading-relaxed text-gray-600 dark:text-gray-400">
+              A curated collection of mobile apps, web products, AI-focused experiences, business websites, and game projects I have designed and developed.
             </p>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+          <div className="mt-10 flex flex-col lg:flex-row gap-4 lg:items-center">
+            <div className="flex flex-wrap gap-2">
+              {filters.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setFilter(item.id)}
+                  className={`rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
+                    filter === item.id
+                      ? 'bg-gray-950 text-white shadow-lg dark:bg-white dark:text-gray-950'
+                      : 'bg-white/80 text-gray-700 border border-gray-200 hover:border-blue-300 hover:text-blue-600 dark:bg-gray-900/80 dark:text-gray-300 dark:border-gray-800 dark:hover:border-blue-700'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            <div className="lg:ml-auto w-full lg:w-72">
+              <input
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="Search projects or technologies..."
+                aria-label="Search projects"
+                className="w-full rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-gray-800 dark:bg-gray-900 dark:text-white"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <p className="text-sm font-semibold text-gray-500 dark:text-gray-500">
+                {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
+              </p>
+              <h2 className="text-3xl font-bold text-gray-950 dark:text-white mt-1">
+                {filter === 'all' ? 'My Work' : filters.find((item) => item.id === filter)?.label}
+              </h2>
+            </div>
           </div>
 
-          {/* Empty State */}
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                No projects found matching your filters.
-              </p>
+          {filteredProjects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7">
+              {filteredProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-3xl border border-dashed border-gray-300 dark:border-gray-800 p-12 text-center">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No matching projects</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-5">Try another category or search term.</p>
               <button
-                onClick={() => {
-                  setCategoryFilter('all')
-                  setStatusFilter('all')
-                }}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                onClick={() => { setFilter('all'); setSearch('') }}
+                className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition"
               >
-                Show All Projects
+                Reset Filters
               </button>
             </div>
           )}
