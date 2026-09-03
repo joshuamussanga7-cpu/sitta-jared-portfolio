@@ -10,106 +10,75 @@ interface ProjectCardProps {
   project: Project
 }
 
-/**
- * Project Card Component
- */
 export function ProjectCard({ project }: ProjectCardProps) {
-  return (
-    <GlassmorphicCard className="cursor-pointer group h-full flex flex-col overflow-hidden" hover>
-      {/* Project Image with Screenshots */}
-      <div className="relative">
-        <Link href={`/projects/${project.id}`}>
-          <div className="w-full h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg mb-4 overflow-hidden relative">
-            {project.image ? (
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-white text-3xl font-bold opacity-20">
-                {project.title.charAt(0)}
-              </div>
-            )}
-          </div>
-        </Link>
+  const statusLabel = project.status === 'in-progress' ? 'In Progress' : project.status === 'completed' ? 'Completed' : 'Planned'
 
-        {/* Status Badge */}
-        <div className="absolute top-3 right-3 flex flex-col items-end gap-2">
-          {project.status && (
+  return (
+    <GlassmorphicCard className="group h-full overflow-hidden border-gray-200/70 dark:border-gray-800/70 bg-white/80 dark:bg-gray-900/80" hover>
+      <Link href={`/projects/${project.id}`} className="block">
+        <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-6xl font-black text-white/20">{project.title.charAt(0)}</span>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+          <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+            {project.featured && (
+              <Badge className="bg-white text-gray-950 border-none shadow-lg text-[10px] font-black uppercase tracking-wider">
+                Featured
+              </Badge>
+            )}
             <Badge
               variant={project.status === 'completed' ? 'success' : project.status === 'in-progress' ? 'warning' : 'info'}
-              className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5"
+              className="text-[10px] font-bold uppercase tracking-wider shadow-lg"
             >
-              {project.status}
-            </Badge>
-          )}
-
-          {project.monetization && project.monetization.length > 0 && (
-            <Badge
-              variant="default"
-              className="bg-green-600/90 text-white text-[10px] font-black uppercase tracking-wider px-2 py-0.5 border-none shadow-lg"
-            >
-              $ {project.monetization[0]}
-            </Badge>
-          )}
-        </div>
-
-        {/* Screenshot Count */}
-        {project.screenshots && project.screenshots.length > 1 && (
-          <div className="absolute bottom-3 right-3">
-            <Badge variant="info" className="text-xs">
-              {project.screenshots.length} screenshots
+              {statusLabel}
             </Badge>
           </div>
-        )}
-      </div>
 
-      {/* Project Info */}
-      <div className="flex-1 flex flex-col p-4">
-        <Link href={`/projects/${project.id}`}>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-            {project.title}
-          </h3>
+          <div className="absolute bottom-4 left-4 right-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-white/80 mb-1">
+              {project.category === 'mobile' ? 'Mobile App' : project.category === 'web' ? 'Web Application' : 'Digital Product'}
+            </p>
+            <h3 className="text-2xl font-black text-white leading-tight">{project.title}</h3>
+          </div>
+        </div>
+      </Link>
 
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-1 line-clamp-2">
-            {project.description}
-          </p>
-        </Link>
+      <div className="flex flex-col p-5">
+        <p className="text-sm leading-6 text-gray-600 dark:text-gray-400 line-clamp-3 min-h-[4.5rem]">
+          {project.description}
+        </p>
 
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.slice(0, 3).map((tech) => (
-            <Badge key={tech} variant="info" className="text-xs">
-              {tech}
+        <div className="flex flex-wrap gap-2 mt-5">
+          {(project.tags ?? project.technologies).slice(0, 3).map((tag) => (
+            <Badge key={tag} variant="info" className="text-xs">
+              {tag}
             </Badge>
           ))}
-          {project.technologies.length > 3 && (
-            <Badge variant="info" className="text-xs">
-              +{project.technologies.length - 3}
-            </Badge>
-          )}
         </div>
 
-        {/* Project Stats */}
-        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-4">
-          <span className="capitalize">{project.category}</span>
+        <div className="mt-5 flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-4 text-xs text-gray-500 dark:text-gray-500">
+          <span>{project.role ?? 'Developer'}</span>
           {project.timeline && <span>{project.timeline}</span>}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-2">
+        <div className="mt-4 flex gap-2">
           <Button href={`/projects/${project.id}`} size="sm" className="flex-1">
-            View Project
+            View Case Study
           </Button>
-
           {project.links.apk && (
-            <DownloadButton
-              href={project.links.apk}
-              type="apk"
-              className="px-3 py-2"
-            />
+            <DownloadButton href={project.links.apk} type="apk" className="px-3 py-2" />
           )}
         </div>
       </div>
