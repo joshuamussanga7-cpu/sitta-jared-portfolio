@@ -39,10 +39,13 @@ function HeroSection() {
 
         <GlassmorphicCard className="relative min-h-[520px] p-3 flex items-center justify-center" hover>
           <div className="absolute -inset-8 rounded-full bg-cyan-100/45 blur-3xl" aria-hidden="true" />
-          <div className="relative z-10 w-full max-w-[470px] aspect-square rounded-[3.4rem] border border-white/75 bg-white/25 p-3 shadow-[0_40px_100px_rgba(44,111,151,.17)] rotate-2 hover:rotate-0 transition-transform duration-700">
-            <div className="relative overflow-hidden rounded-[2.9rem] w-full h-full bg-white/24">
-              <img src={portfolioInfo.avatar} alt={portfolioInfo.name} className="w-full h-full object-cover" />
-              <div className="glass-highlight" />
+          <div className="profile-photo-stage relative z-10 w-[min(82vw,470px)] aspect-square">
+            <div className="profile-photo-orbit" aria-hidden="true" />
+            <div className="profile-photo-ring w-[92%] h-[92%]">
+              <div className="relative overflow-hidden rounded-full w-full h-full bg-white/24 border border-white/80">
+                <img src="/me.png" alt={portfolioInfo.name} className="profile-photo" />
+                <div className="profile-photo-sheen" aria-hidden="true" />
+              </div>
             </div>
           </div>
           <div className="liquid-orb" style={{top:'5%',left:'4%'}} /><div className="liquid-orb large" style={{bottom:'3%',right:'2%',animationDelay:'-5s'}} />
