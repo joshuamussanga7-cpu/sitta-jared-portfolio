@@ -7,11 +7,11 @@ import { Button } from '@/components/ui/Button'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(true)
 
   useEffect(() => {
     const saved = window.localStorage.getItem('theme')
-    const shouldUseDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    const shouldUseDark = saved !== 'light'
     setDark(shouldUseDark)
     document.documentElement.classList.toggle('dark', shouldUseDark)
     document.body.classList.toggle('dark', shouldUseDark)
@@ -95,9 +95,7 @@ export function Navbar() {
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
               <button aria-label="Toggle menu" className="p-2 rounded-xl hover:bg-white/60 dark:hover:bg-white/10" onClick={() => setIsOpen(!isOpen)}>
-                <span className="block w-5 h-0.5 bg-slate-800 mb-1.5 dark:bg-slate-200" />
-                <span className="block w-5 h-0.5 bg-slate-800 mb-1.5 dark:bg-slate-200" />
-                <span className="block w-5 h-0.5 bg-slate-800 dark:bg-slate-200" />
+                <span className="block w-5 h-0.5 bg-slate-800 mb-1.5 dark:bg-slate-200" /><span className="block w-5 h-0.5 bg-slate-800 mb-1.5 dark:bg-slate-200" /><span className="block w-5 h-0.5 bg-slate-800 dark:bg-slate-200" />
               </button>
             </div>
           </div>
