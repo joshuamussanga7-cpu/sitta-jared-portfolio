@@ -1,15 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowUpRight, Github, Linkedin, Mail, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Mail, Sparkles } from 'lucide-react'
 import { socialLinks, portfolioInfo } from '@/lib/data'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
   const socialIcon = (name: string) => {
     const value = name.toLowerCase()
-    if (value.includes('github')) return <Github className="h-4 w-4" />
-    if (value.includes('linkedin')) return <Linkedin className="h-4 w-4" />
     if (value.includes('mail') || value.includes('email')) return <Mail className="h-4 w-4" />
     return <span className="text-sm font-black">{name.charAt(0).toUpperCase()}</span>
   }
