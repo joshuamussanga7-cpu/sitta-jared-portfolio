@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico" },
 };
 
-const themeScript = `(() => { try { const saved = localStorage.getItem('theme'); const dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches); if (dark) { document.documentElement.classList.add('dark'); } } catch {} })()`;
+const themeScript = `(() => { try { const saved = localStorage.getItem('theme'); const dark = saved !== 'light'; if (dark) document.documentElement.classList.add('dark'); } catch { document.documentElement.classList.add('dark'); } })()`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
