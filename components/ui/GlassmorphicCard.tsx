@@ -3,9 +3,8 @@
 import { ReactNode, useCallback, useRef } from 'react'
 import { cn } from '@/lib/utils'
 
-interface GlassmorphicCardProps {
+interface GlassmorphicCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode
-  className?: string
   hover?: boolean
 }
 
@@ -18,6 +17,7 @@ export function GlassmorphicCard({
   children,
   className,
   hover = true,
+  ...props
 }: GlassmorphicCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -48,6 +48,7 @@ export function GlassmorphicCard({
         hover && 'fluid-glass-hover',
         className,
       )}
+      {...props}
     >
       <div className="fluid-glass-ripple" aria-hidden="true" />
       <div className="fluid-glass-sheen" aria-hidden="true" />
