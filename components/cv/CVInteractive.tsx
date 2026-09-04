@@ -58,7 +58,7 @@ export function CVInteractive() {
         </div>
 
         <GlassmorphicCard className="p-6 sm:p-10 lg:p-12">
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_.6fr]">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_220px]">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">Mobile • Web • AI • Games</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-black tracking-[-0.05em] text-slate-950 sm:text-6xl">{portfolioInfo.name}</h1>
@@ -70,12 +70,24 @@ export function CVInteractive() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 content-start">
-              <GlassmorphicCard className="p-4" hover={false}><Code2 className="h-5 w-5 text-cyan-500" /><p className="mt-3 text-2xl font-black text-slate-950">{projects.length}+</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Projects</p></GlassmorphicCard>
-              <GlassmorphicCard className="p-4" hover={false}><Sparkles className="h-5 w-5 text-violet-500" /><p className="mt-3 text-2xl font-black text-slate-950">{skills.length}+</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Skills</p></GlassmorphicCard>
-              <GlassmorphicCard className="p-4" hover={false}><Globe2 className="h-5 w-5 text-blue-500" /><p className="mt-3 text-2xl font-black text-slate-950">Tanzania</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Location</p></GlassmorphicCard>
-              <GlassmorphicCard className="p-4" hover={false}><Gamepad2 className="h-5 w-5 text-emerald-500" /><p className="mt-3 text-2xl font-black text-slate-950">3</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Games</p></GlassmorphicCard>
+            <div className="flex justify-center lg:justify-end">
+              <div className="profile-photo-stage w-[190px] sm:w-[210px] aspect-square">
+                <div className="profile-photo-orbit" aria-hidden="true" />
+                <div className="profile-photo-ring w-[92%] h-[92%]">
+                  <div className="relative overflow-hidden rounded-full w-full h-full bg-white/24 border border-white/80">
+                    <img src="/me.png" alt={portfolioInfo.name} className="profile-photo" />
+                    <div className="profile-photo-sheen" aria-hidden="true" />
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <GlassmorphicCard className="p-4" hover={false}><Code2 className="h-5 w-5 text-cyan-500" /><p className="mt-3 text-2xl font-black text-slate-950">{projects.length}+</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Projects</p></GlassmorphicCard>
+            <GlassmorphicCard className="p-4" hover={false}><Sparkles className="h-5 w-5 text-violet-500" /><p className="mt-3 text-2xl font-black text-slate-950">{skills.length}+</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Skills</p></GlassmorphicCard>
+            <GlassmorphicCard className="p-4" hover={false}><Globe2 className="h-5 w-5 text-blue-500" /><p className="mt-3 text-2xl font-black text-slate-950">Tanzania</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Location</p></GlassmorphicCard>
+            <GlassmorphicCard className="p-4" hover={false}><Gamepad2 className="h-5 w-5 text-emerald-500" /><p className="mt-3 text-2xl font-black text-slate-950">3</p><p className="text-xs font-bold uppercase tracking-wider text-slate-500">Games</p></GlassmorphicCard>
           </div>
         </GlassmorphicCard>
       </section>
