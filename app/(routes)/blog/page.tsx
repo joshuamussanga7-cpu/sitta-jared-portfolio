@@ -23,6 +23,21 @@ function getCategory(tags: string[]) {
   return 'development'
 }
 
+function LiquidBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div className="liquid-blob one" />
+      <div className="liquid-blob two" />
+      <div className="liquid-blob three" />
+      <div className="liquid-blob four" />
+      <div className="liquid-orb large" style={{ top: '12%', right: '8%' }} />
+      <div className="liquid-orb small" style={{ top: '33%', left: '5%', animationDelay: '-2s' }} />
+      <div className="liquid-orb" style={{ bottom: '9%', right: '16%', animationDelay: '-4s' }} />
+      <div className="liquid-grid absolute inset-0 opacity-40" />
+    </div>
+  )
+}
+
 export default async function BlogPage({ searchParams }: Props) {
   const { category = 'all' } = await searchParams
   const posts = getAllBlogPosts()
@@ -31,10 +46,8 @@ export default async function BlogPage({ searchParams }: Props) {
   const remainingPosts = filteredPosts.slice(3)
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f8fbff]">
-      <div className="pointer-events-none absolute -left-40 top-24 h-96 w-96 rounded-full bg-cyan-200/35 blur-3xl" />
-      <div className="pointer-events-none absolute -right-40 top-72 h-[28rem] w-[28rem] rounded-full bg-violet-200/25 blur-3xl" />
-      <div className="pointer-events-none absolute left-1/3 top-[38rem] h-80 w-80 rounded-full bg-sky-200/20 blur-3xl" />
+    <main className="liquid-scene relative min-h-screen overflow-hidden">
+      <LiquidBackground />
 
       <section className="relative z-10 px-5 pb-12 pt-20 sm:px-8 lg:px-10 lg:pt-28">
         <div className="mx-auto max-w-7xl">
