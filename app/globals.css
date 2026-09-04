@@ -5,36 +5,50 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--background);color:var(--foreground);font-family:var(--font-geist-sans),-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html.dark{color-scheme:dark}
+body{margin:0;background:var(--background);color:var(--foreground);font-family:var(--font-geist-sans),-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color 500ms ease,color 400ms ease}
 a,button{transition:all 300ms ease}
 
+/* Day / night theme */
+body.dark{--background:#07111f;--foreground:#e8f1fb}
+body.dark .text-slate-950{color:#f5f9ff!important}
+body.dark .text-slate-900{color:#eef5ff!important}
+body.dark .text-slate-800{color:#dce8f5!important}
+body.dark .text-slate-700{color:#c7d6e5!important}
+body.dark .text-slate-600{color:#aebfd1!important}
+body.dark .text-slate-500{color:#91a5b8!important}
+body.dark .text-slate-400{color:#7d93a8!important}
+body.dark .bg-white{background-color:#0b1727!important}
+body.dark .bg-white\/60{background-color:rgba(255,255,255,.09)!important}
+body.dark .bg-white\/55{background-color:rgba(255,255,255,.08)!important}
+body.dark .bg-white\/50{background-color:rgba(255,255,255,.07)!important}
+body.dark .bg-white\/45{background-color:rgba(255,255,255,.075)!important}
+body.dark .bg-white\/40{background-color:rgba(255,255,255,.07)!important}
+body.dark .bg-white\/35{background-color:rgba(255,255,255,.06)!important}
+body.dark .bg-white\/34{background-color:rgba(255,255,255,.055)!important}
+body.dark .bg-white\/30{background-color:rgba(255,255,255,.052)!important}
+body.dark .bg-white\/28{background-color:rgba(255,255,255,.045)!important}
+body.dark .bg-white\/25{background-color:rgba(255,255,255,.04)!important}
+body.dark .bg-white\/24{background-color:rgba(255,255,255,.035)!important}
+body.dark .bg-\[\#f7fbff\]{background-color:#07111f!important}
+body.dark .bg-\[\#f3f9fd\]{background-color:#091726!important}
+body.dark .hover\:bg-white\/60:hover{background-color:rgba(255,255,255,.11)!important}
+body.dark .hover\:bg-white\/70:hover{background-color:rgba(255,255,255,.14)!important}
+body.dark .border-white\/90{border-color:rgba(255,255,255,.12)!important}
+body.dark .border-white\/80{border-color:rgba(255,255,255,.12)!important}
+body.dark .border-white\/70{border-color:rgba(255,255,255,.1)!important}
+body.dark .glass-surface{background:rgba(16,30,47,.58);border-color:rgba(255,255,255,.12);box-shadow:0 24px 80px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.1)}
+body.dark .glassmorphic{background:rgba(16,30,47,.5);border-color:rgba(255,255,255,.1);box-shadow:0 20px 70px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.08)}
+body.dark .fluid-glass-card{background:radial-gradient(circle at var(--fluid-x) var(--fluid-y),rgba(35,201,255,.13),transparent 28%),linear-gradient(135deg,rgba(31,52,74,.64),rgba(15,32,52,.4) 48%,rgba(17,38,60,.28));border-color:rgba(255,255,255,.13);box-shadow:0 28px 90px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.1),inset 0 -1px 0 rgba(65,202,239,.12)}
+body.dark .fluid-glass-sheen{background:linear-gradient(125deg,rgba(255,255,255,.16),transparent 24%,transparent 67%,rgba(255,255,255,.08))}
+body.dark .liquid-scene{background:radial-gradient(circle at 14% 12%,rgba(28,196,234,.12),transparent 28%),radial-gradient(circle at 86% 64%,rgba(91,112,255,.15),transparent 32%),radial-gradient(circle at 52% 90%,rgba(52,213,185,.08),transparent 28%),linear-gradient(145deg,#07111f 0%,#0a1625 48%,#0d1c2d 100%)}
+body.dark .liquid-grid{background-image:radial-gradient(rgba(154,187,214,.12) 1px,transparent 1px)}
+body.dark .liquid-orb{background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.2),rgba(255,255,255,.08) 25%,rgba(74,210,255,.16) 58%,rgba(110,120,255,.16));border-color:rgba(255,255,255,.18);box-shadow:inset -12px -14px 25px rgba(0,0,0,.12),inset 8px 8px 18px rgba(255,255,255,.08),0 18px 50px rgba(0,0,0,.22)}
+body.dark .glass-highlight{background:linear-gradient(120deg,rgba(255,255,255,.15),transparent 28%,transparent 70%,rgba(255,255,255,.08))}
+
 /* Crystal / water glass system */
-.fluid-glass-card{
-  --fluid-x:50%;
-  --fluid-y:50%;
-  --fluid-opacity:0;
-  background:
-    radial-gradient(circle at var(--fluid-x) var(--fluid-y),rgba(123,231,255,.22),transparent 28%),
-    linear-gradient(135deg,rgba(255,255,255,.72),rgba(238,249,255,.34) 48%,rgba(255,255,255,.2));
-  backdrop-filter:blur(28px) saturate(175%);
-  -webkit-backdrop-filter:blur(28px) saturate(175%);
-  border:1px solid rgba(255,255,255,.9);
-  box-shadow:0 28px 90px rgba(69,107,145,.13),inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(122,210,239,.12);
-  isolation:isolate;
-  transform:translateZ(0);
-}
-.fluid-glass-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(520px circle at var(--fluid-x) var(--fluid-y),rgba(255,255,255,.3),transparent 38%),
-    radial-gradient(circle at 12% 8%,rgba(255,255,255,.62),transparent 26%);
-  opacity:calc(.35 + .5 * var(--fluid-opacity));
-  transition:opacity 300ms ease;
-}
+.fluid-glass-card{--fluid-x:50%;--fluid-y:50%;--fluid-opacity:0;background:radial-gradient(circle at var(--fluid-x) var(--fluid-y),rgba(123,231,255,.22),transparent 28%),linear-gradient(135deg,rgba(255,255,255,.72),rgba(238,249,255,.34) 48%,rgba(255,255,255,.2));backdrop-filter:blur(28px) saturate(175%);-webkit-backdrop-filter:blur(28px) saturate(175%);border:1px solid rgba(255,255,255,.9);box-shadow:0 28px 90px rgba(69,107,145,.13),inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(122,210,239,.12);isolation:isolate;transform:translateZ(0)}
+.fluid-glass-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(520px circle at var(--fluid-x) var(--fluid-y),rgba(255,255,255,.3),transparent 38%),radial-gradient(circle at 12% 8%,rgba(255,255,255,.62),transparent 26%);opacity:calc(.35 + .5 * var(--fluid-opacity));transition:opacity 300ms ease}
 .fluid-glass-ripple{position:absolute;width:320px;aspect-ratio:1;left:calc(var(--fluid-x) - 160px);top:calc(var(--fluid-y) - 160px);border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.28) 0%,rgba(113,227,255,.18) 20%,rgba(81,156,255,.08) 42%,transparent 68%);opacity:var(--fluid-opacity);transform:scale(.55);filter:blur(5px);mix-blend-mode:screen;transition:opacity 180ms ease,transform 550ms cubic-bezier(.16,1,.3,1)}
 .fluid-glass-card:hover .fluid-glass-ripple{transform:scale(1)}
 .fluid-glass-sheen{position:absolute;inset:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.72),transparent 24%,transparent 67%,rgba(255,255,255,.24));opacity:.8}
