@@ -35,4 +35,4 @@ The biggest lesson from IQ Booster is that game development is less about adding
 
 That lesson now influences how I approach every interactive product: define the action, make feedback immediate, reduce friction, and give the user a meaningful next step.
 
-**Explore the project:** [IQ Booster project](/projects/iq-booster)
+**Explore all projects:** [Portfolio projects](/projects)
